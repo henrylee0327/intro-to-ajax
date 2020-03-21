@@ -68,10 +68,33 @@
   // 7) When the button is clicked again, it should fetch another dog and replace the image
   //    inside of <div id="doggoContainer">. There should be a loop where you click the button,
   //    get a new dog, click the button, get a new dog, etc.
-  //
+  //  
+      $('#generateDoggoBtn').click(clickGenerateDoggoBtn)
+      
+        function clickGenerateDoggoBtn (evt) {
+          $.getJSON('https://dog.ceo/api/breeds/image/random', handleResultFromDoggo)
+        }
+
+        function handleResultFromDoggo (dataFromServer) {
+          const dogImage = dataFromServer.message
+          const dogHtml = renderHtml(dogImage)
+          $('#doggoContainer').html(dogHtml)
+          // console.log('here is what the dog.ceo server sent us:', dataFromServer)
+        }
+        
+        
+        function renderHtml (dogImage) {
+          return `
+            <img src="${dogImage}">
+          
+          `
+          // `<img src="' + dogImage + '">`
+        }
+        
+       
 
   // TODO: your code goes here :)
-
+      
   //
   // Cool. Now let's kick it up a notch and allow selecting a specific breed of dog!
   //
@@ -105,7 +128,10 @@
   //
   //    You should now be able to view random pictures of specific dog breeds via the menu!
   //
-
+        $.ajax('https://dog.ceo/api/breeds/list', breed)
+          function breed (data) {  
+        console.log('It is loading')
+          }
   // TODO: your code goes here :)
 
   //
