@@ -91,6 +91,104 @@
   //    it once done.
   //
 
+        // const catBtnEl = document.getElementById('generateCatBtn')
+        // catBtnEl.addEventListener("click", buttonClickEvt)
+
+        // function buttonClickEvt () {
+        //   console.log ("Sending the AJAX request using fetch()!!") 
+        //   const catheaders = 'https://api.thecatapi.com/v1/images/search?size=full&mime_types=jpg&format=json&has_breeds=1&order=RANDOM&page=0&limit=1' 
+        //   fetch(catheaders, 
+        //   {
+        //     'Content-Type': 'application/json',
+        //     'x-api-key': 'c0d645d4-7c9f-4286-aaf5-8a8490a11cf8'
+        //   })
+        //   .then(dataFromServer)
+        //   .then(catImage)
+        // }
+
+        // function dataFromServer (response) {
+        //   console.log('Received the data from server!!')
+        //   return response.json()
+        // }
+
+        // function catImage (responseTxt) {
+        //   console.log('I am the last callback funtion')
+        //   const contentEl = document.getElementById('catContainer')
+        //   contentEl.innerHTML=responseTxt
+        // }
+
+
+
+      // const catBtnEl = document.getElementById("generateCatBrn")
+      //   catBtnEl.addEventListener("click", buttonClickEvt)
+
+      //   let imgTagCat = document.createElement("img")
+      //   $(imgTagCat).attr("id", 'catpic')
+      //   $("#catContainer").append(imgTagCat)
+
+      //   var myHeaders = new Headers({
+      //     'Content-Type': 'application/json',
+      //     'x-api-key': 'c0d645d4-7c9f-4286-aaf5-8a8490a11cf8'
+      //   })
+
+      //   function buttonClickEvt () {
+      //     $(this).text("Generating Cat...");
+      //     $(this).attr("disabled", "true")
+          
+      //     let catAPI = "https://api.thecatapi.com/v1/images/search?size=full&mime_types=jpg&format=json&has_breeds=1&order=RANDOM&page=0&limit=1"
+
+      //     fetch(catAPI, {
+      //       headers: myHeaders,
+      //     })
+      //     .then(extractCatJSON)
+      //     .then(useTheCatImg)
+      //   }
+
+      //     function extractCatJSON (response) {
+      //       return response.json()
+      //     }
+
+      //     function useTheCatImg (responseTxt) {
+      //       console.log(responseTxt)
+      //       $('#catpic').replaceWith("img src='" + responseTxt[0].url + "' id='catpic'>");
+      //       $('#generateCatBtn').text("Generate Cat");
+      //       $('#generateCatBtn').removeAttr("disabled");
+      //     }
+      const catBtnEl = document.getElementById('generateCatBtn')
+  catBtnEl.addEventListener('click', clickCatBtn)
+
+  let imgTagCat = document.createElement("img");
+  $(imgTagCat).attr("id", 'catpic');
+  $("#catContainer").append(imgTagCat);
+
+  var myHeaders = new Headers({
+    'Content-Type': 'application/json',
+    'x-api-key': '863c597e-678f-4cfe-996c-c9ff2ca6e3b6',
+  });
+
+  function clickCatBtn () {
+    $(this).text("Generating Cat …");
+    $(this).attr("disabled", "true");
+
+    let catAPI = "https://api.thecatapi.com/v1/images/search?size=full&mime_types=jpg&format=json&has_breeds=1&order=RANDOM&page=0&limit=1";
+
+    fetch(catAPI, {
+      headers: myHeaders,})
+      .then(extractCatJSON)
+      .then(useTheCatImg);
+  }
+
+  function extractCatJSON (response) {
+    return response.json() // <-- returns a new Promise object
+  }
+
+  function useTheCatImg (responseTxt) {
+    console.log(responseTxt)
+    $("#catpic").replaceWith( "<img src='" + responseTxt[0].url + "' id='catpic'>" );
+    $('#generateCatBtn').text("Generate Cat");
+    $('#generateCatBtn').removeAttr("disabled");
+  }
+
   // TODO: your code goes here :)
 
   //
